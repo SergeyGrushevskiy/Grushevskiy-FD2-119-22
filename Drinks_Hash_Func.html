@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>N.13 Домашнее задание DRINKS_HASH_FUNC</title>
+</head>
+<body>
+	<div>
+		
+			<input type="button" value="Ввод информации о напитке" id="drinkName"><br>
+			<input type="button" value="Получение информации о напитке" id="drinkInfo"><br>
+			<input type="button" value="Удаление информации о напитке" id="drinkInfoDelete"><br>
+			<input type="button" value="Перечень всех напитков" id="drinkList"><br>
+
+		<p style="color:braun" id="drinkInformation"></p>
+	</div>
+<script>
+
+	///////////////////////////////////////  prompt,confirm
+    function HashStorageFunc(key, value) {
+		let self = this;
+		//this относится к текущему контексту
+        //self относится к window
+
+		self.hashStorage = {}; // хранилище для значений
+
+		self.addValue = function(key, value) {
+			self.hashStorage[key] = value;
+		}
+		// сохраняет указанное значение под указанным ключом;
+		//если под этим ключом уже сохранено какое-то значение — оно должно быть перезаписано;
+
+		self.getValue = function(key) {
+			if (key in self.hashStorage) {
+				return self.hashStorage[key];
+			} else {
+				return undefined;
+			}
+		}
+		// возвращает значение по указанному ключу либо undefined;
+
+		self.deleteValue = function(key) {
+			if (key in self.hashStorage) {
+				delete self.hashStorage[key];
+				return true;
+			} else {
+				return false;
+			}
+		}
+		//удаляет значение с указанным ключом, возвращает true если значение было удалено и 
+		//false если такого значения не было в хранилище;
+
+		self.getKeys = function() {
+			let keys = [];
+			for (let key in self.hashStorage) {
+				keys.push(key);
+			}
+
+			return keys;
+		}
+		// возвращает массив, состоящий из одних ключей.
+
+	}
+    
+	let drinkStorage = new HashStorageFunc();
+	//key   - название напитка
+	//value - информация о напитке
+
+
+	let drinkName = document.getElementById("drinkName");//Ввод информации о напитке
+
+	drinkName.onclick = function() {
+		let NewKey = prompt("Напишите название напитка  ");
+		let newValue = {};
+
+		newValue.alco = confirm(NewKey + " - алкогольный напиток ?\n Если Вы нажмёте ok - алкогольный\n Если нажмёте отмена - без алкогольный");
+		newValue.recipe = prompt("напишите рецепт напитка - " + NewKey);
+		newValue.country = prompt("Страна происхождения напитка - " + NewKey);
+		drinkStorage.addValue(NewKey, newValue);
+	}
+
+	let drinkInfo = document.getElementById("drinkInfo");//Получение информации о напитке
+
+	drinkInfo.onclick = function() {
+		let drinkInfoName = prompt("Напишите название напитка");
+		let drinkInformation= document.getElementById("drinkInformation");
+
+		let answer = drinkStorage.getValue(drinkInfoName);
+
+		if (drinkStorage.getValue(drinkInfoName) !== undefined) {
+			drinkInformation.innerHTML = "Напиток: " + drinkInfoName + 
+								   "<br>" + "Алкогольный: " + (answer.alco === true ? "да" : "нет")	+ 
+								   "<br>" + "Рецепт приготовления: " + (answer.recipe ? answer.recipe : "рецепта нет") +
+								   "<br>" + "Страна происхождения напитка: " + (answer.country ? answer.country : "нет информации");
+		} else {
+			drinkInformation.innerHTML = "Напиток отсутствует!";
+		}
+	}
+	
+	let drinkInfoDelete = document.getElementById("drinkInfoDelete"); // Удаление информации о напитке
+
+	drinkInfoDelete.onclick = function() {
+		let drinkInfoDelete = prompt("Напишите название напитка");
+		let drinkInformation = document.getElementById("drinkInformation");
+
+		if (drinkStorage.deleteValue(drinkInfoDelete) === true) {
+			drinkInformation.innerHTML = "информация о напитке удалена!";
+		} else {
+			drinkInformation.innerHTML = "Такой напиток отсутствует";
+		}
+
+	}
+
+	let drinkList = document.getElementById("drinkList");//Перечень всех напитков
+
+	drinkList.onclick = function() {
+		let drinkInformation = document.getElementById("drinkInformation");
+		drinkInformation.innerHTML = drinkStorage.getKeys() ;
+	}
+
+	
+
+</script>
+</body>
+</html>
