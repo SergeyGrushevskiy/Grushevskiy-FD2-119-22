@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A3+</title>
+</head>
+<body>
+  <script>
+
+function palindrom (word) {
+  
+    word = word
+    .toLowerCase()
+    .replace(/[\s.,%!?ьъ]/g, '')
+    .split('ё')
+    .join('е');
+
+  const k = Math.floor(word.length/2);
+      for (let i=0; i<k; i++) 
+        if (word[i] !==word[word.length - i - 1])
+        return false;
+      return true;
+    }
+    alert(palindrom(prompt("Проверка на полиндром", "око")));
+
+  </script>
+</body>
+</html>
