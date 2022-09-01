@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A4+</title>
+</head>
+<body>
+
+    <script>
+
+     function palindrom(str) {
+       str = str.toLowerCase().replaceAll(/[—.,;:?!-"()\s]/g, "").replaceAll("ё", "е").replaceAll("ъ", "ь");
+
+   return (function recursion(str) {
+      if (str.length < 2) return true;
+      return str[0] == str[str.length - 1]
+         ? recursion(str.slice(1, -1))
+         : false;
+   })(str);
+}
+
+let palindrom1 = "Нахапал фуфла пахан";
+let palindrom2 = "Кот, сука, за кусток";
+
+
+console.log(`${palindrom1} - ${palindrom(palindrom1) ? "палиндром" : "не палиндром"}`);
+console.log(`${palindrom2} - ${palindrom(palindrom2) ? "палиндром" : "не палиндром"}`);
+alert(palindrom(prompt("Напишите фразу для проверки на полиндром", "око")));
+
+    </script>
+
+</body>
+</html> 
