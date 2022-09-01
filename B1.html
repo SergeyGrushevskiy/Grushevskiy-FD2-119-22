@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1</title>
+</head>
+<body> 
+   
+    <script>
+
+            let year = Number(prompt('Напишите год! '));
+            while((isNaN(year)) === true || !year) {
+                year = Number(prompt("Неверно ввели год!"));
+            }
+            function century (i) {
+                //Метод Math.ceil() - округление вверх. Округляет аргумент до ближайшего большего целого.
+                return Math.ceil(i/100);
+            }
+            alert(year + " год " + century(year) + " век ") ;
+
+        </script>
+</body>
+</html>
