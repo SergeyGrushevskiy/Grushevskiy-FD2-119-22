@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class</title>
+</head>
+<body>
+    <input type="text" placeholder="Введите название напитка"name="drinkName" ><br>
+    <input type="checkbox"  name="alco"><span>Напиток алкогольный?</span> <br>
+    <textarea name="ingridients" placeholder="Рецепт приготовления:" id="" cols="20" rows="3"></textarea><br>
+    <textarea name="country" placeholder="Страна происхождения напитка:" id="" cols="20" rows="3"></textarea><br>
+    <input type="button" value="Ввод инфо о напитке" onclick="drinkName()"><br>
+    <input type="button" value="Получение инфо о напитке" onclick="drinkInfo()"><br>
+    <input type="button" value="Удаление инфо о напитке" onclick="drinkInfoDelete()"><br>
+    <input type="button" value="Перечень всех напитков" onclick="drinkList()">
+    <div id="place"></div>
+    <script>
+        
+	class HashStorageСlass {
+      constructor() {
+      this.publicHash = {
+        'b-52' : {
+          isAlco: true,
+          ingridients: ['lemon', 'water', 'rome'],
+          country: ['Malibu']
+        },
+        'moxito' : {
+          isAlco: false,
+          ingridients: ['lime', 'sprite', 'mint'],
+          country: ['Гавана',' Куба']
+        },
+        'Blue Lagoon': {
+          isAlco: true,
+          ingridients: ['1. Наполнить высокий стакан (хайбол) кубиками льда.',
+                        '2. Смешать в шейкере водку и ликер.',
+                        '3. Перелить содержимое шейкера в бокал.',
+                       ' 4. Добавить спрайт.',
+                        '5. Украсить полученный коктейль долькой лимона.'],
+          country: ['Неизвестно']
+        },
+      };
+    }
+	
+
+     addValue (key, value){
+		this.publicHash[key] = value;
+		console.log(this.publicHash)
+	 }
+
+	 getValue (key){
+		if (key in this.publicHash){
+			return (this.publicHash[key])}
+			else{ 
+				return ('Такого напитка нет! ')
+			}
+	 }
+
+	 deleteValue (key){
+		delete this.publicHash[key];
+		console.log(this.publicHash)
+	 }
+	 getKeys (){
+		let array = [];
+		for (let key in this.publicHash){
+			array.push(key);
+		}
+		return array;
+	 }
+	}
+
+	const drinkHash = new HashStorageСlass;
+      
+    function drinkName(){
+        const addDrinc = document.querySelector('[name="drinkName"]').value;
+        const isAlco = document.querySelector('[name="alco"]').checked;
+        const ingridients = document.querySelector('[name="ingridients"]').value;
+        const country = document.querySelector('[name = "country"]').value;
+        drinkHash.addValue(addDrinc, {'isAlco': isAlco, 'country': country, 'ingridients': ingridients.split(' ')});
+    }
+
+    function drinkInfo(){
+        const out = document.getElementById('place');
+        const drincVal = document.querySelector('[name="drinkName"]').value;
+
+        if ( "Такого напитка нет" === drinkHash.getValue(drincVal)) {
+          out.innerHTML = "Напиток не найден";
+        }
+        else {
+             out.innerHTML = 
+          `<p>Напиток: ${drincVal}</p>
+          <p>Алкогольный: ${drinkHash.getValue(drincVal).isAlco === true? "да" : "нет"} </p>
+          <p>Страна происхождения напитка: ${drinkHash.getValue(drincVal).country} </p>
+          <p>Рецепт приготовления:${drinkHash.getValue(drincVal).ingridients} </p>
+          `}
+      }
+
+    function drinkInfoDelete () {
+      const deleteDrincVal = document.querySelector('[name="drinkName"]').value;
+      drinkHash.deleteValue(deleteDrincVal);
+    }
+
+
+    function drinkList () {
+      const out = document.getElementById("place");
+
+      out.innerHTML = `${drinkHash.getKeys().join(' / ')}`;
+    }
+
+
+
+        </script>
+</body>
+</html>
