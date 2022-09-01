@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOWELS_ARR №17</title>
+</head>
+
+<body>
+    <script>
+       
+         const conclusion = prompt ("Подсчёт количества русских гласных букв в строке");
+          console.log ( "с использованием метода массива forEach: " + (vowelForEach(conclusion)));
+          console.log ( "с использованием метода массива reduce:  " + (VowelReduce(conclusion)));
+          console.log ( "с использованием метода массива filter:  " + (vowelFilter(conclusion)));
+         
+
+
+
+        //   function vowels(str) {
+        //     let vowels_array = ["а", "у","о", "ы", "и", "э", "я", "ю", "ё", "е", "А" , "У" , "О" , "Ы" , "И" , "Э" , "Я" , "Ю" , "Е" , "Ё" ];
+        //     let sum = 0;
+        //     for (let i = 0; i < str.length; i++) {
+        //         // Метод includes() определяет, содержит ли массив определённый элемент, 
+        //         //возвращая в зависимости от этого true или false.
+        //         if (vowels_array.includes(str[i])) {
+        //             sum++
+        //         }
+        //     }
+        //     return sum;
+        // }
+        
+
+        function vowelForEach(str) {
+         let vowels_array = ["а", "у","о", "ы", "и", "э", "я", "ю", "ё", "е", "А" , "У" , "О" , "Ы" , "И" , "Э" , "Я" , "Ю" , "Е" , "Ё" ];
+          let sum = 0;
+          str.split('').forEach((e) =>{  
+        //Метод split() разбивает объект String на массив строк путём разделения строки указанной подстрокой.
+        //Метод forEach() выполняет указанную функцию один раз для каждого элемента в массиве.
+        if(vowels_array.includes(e)){ 
+          sum++;} });
+        return sum;
+     }
+       
+
+ 
+ 
+          
+
+ 
+            // function Reduce(str) {
+            //     let split=str.split(''); 
+            //     //Метод split() разбивает объект String на массив строк путём разделения строки указанной подстрокой.
+            //      let vowels_array = ["а", "у","о", "ы", "и", "э", "я", "ю", "ё", "е", "А" , "У" , "О" , "Ы" , "И" , "Э" , "Я" , "Ю" , "Е" , "Ё" ];
+            //      let newStr = split.reduce( (sum, val) => {
+            //      if (vowels_array.indexOf (val) !==-1) { 
+            //        sum++; // добавляем в кол-во найденных гласных +1
+            //   }
+            //       return sum; // Возвращаем новую сумму (или старую, если гласных нет).
+            //     }, 0); // Запускаем reduce с нулевой суммой
+            //       return newStr;
+            //    }
+
+
+            function VowelReduce(str){
+            let vowels_array = ["а", "у","о", "ы", "и", "э", "я", "ю", "ё", "е", "А" , "У" , "О" , "Ы" , "И" , "Э" , "Я" , "Ю" , "Е" , "Ё" ];
+            let sum;
+            sum = str.split('').reduce((acc, cur) => vowels_array.includes(cur) ? acc += cur : acc, '').length;
+             return sum;
+            }
+
+       
+
+          function vowelFilter(str) {
+          var vowels = ['а', 'у', 'о', 'ы', 'и', 'э', 'я', 'ю', 'ё', 'е', 'А', 'У', 'О', 'Ы', 'И', 'Э', 'Я', 'Ю', 'Ё', 'Е'];
+           let sum;
+           sum = str.split('').filter(letter => vowels.includes(letter)).length;
+           return sum;
+          }
+
+        
+               
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html> 
