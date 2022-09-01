@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2</title>
+</head>
+<body>
+    <script>
+        let word = prompt('Напишите слово!');
+        while(!word) {
+            word = prompt("Вы ничего не написали!");
+        }
+        function strReverse(argument) {
+        //строку => в массив
+        //перестановливаем элементы массива в обратный порядок
+        //массив обратно => в строку
+        return argument.split("").reverse().join("");
+        }
+
+        alert(strReverse(word));
+    </script>
+</body>
+</html>
