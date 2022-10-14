@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>!!!-----       FISH      -----!!!</title>
+    <link rel="stylesheet" href="index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<body>
+
+    <div class="menuDiv">
+
+        <div class="aboutDiv">
+            <div class="aboutWrapper">
+            <div onclick="aboutTheGame()" class="start score">Close</div>
+            <p>Игра заключается в поедании рыбок<br>
+                Если Вы столкнётесь с акулой  - Вы погибнете!<br>
+                Чем больше рыбок съедите, тем больше очков наберёте! <br>
+                Вы можете управлять рыбкой  стрелочками либо мышью  </p>
+            </div>
+        </div>  
+
+        <div class="tableDiv">
+            <div class="tableWrapper">
+            <div onclick="setting()" class="start score">Close</div>
+            </div>
+        </div>  
+
+        <div class="container">
+            <input type="longtext" class = "nickname" placeholder="Введите Ваше имя">
+            <div onclick="startHash()" class="start">Старт</div>
+            <div onclick="aboutTheGame()" class="start">Правила игры</div>
+        </div>
+    </div>
+
+    <div class="gameDiv">
+        <div class="nickInfo"></div>
+        <div class="healthPoint"></div>
+        <canvas  class="gameCanvas"></canvas>
+    </div>
+
+    <div class="gameOverDiv">
+        <img src="image/gameOver.png" alt="game_over" class="overImg">
+        <div class="container">
+         <div class="overInfo"></div>
+        <div onclick="startMenuHash ()" class="start">Вернуться в меню</div>
+        </div>
+    </div>
+
+    <script src="touch.js"></script>
+    <script src="mainFish.js"></script> 
+    <script src="control.js"></script>
+    <script src="eat.js"></script>
+    <script src="enemy.js"></script>
+    <script src="shark.js"></script>
+    <script src="main.js"></script>
+    <script src="sound.js"></script>
+
+</body>
+</html>
